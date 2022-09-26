@@ -14,7 +14,7 @@ from timerThread import RepeatTimer
 
 ordercsv = OrderCsv()
 
-timer = RepeatTimer(1, OrderCsv.Download, args=(ordercsv,'2022'))
+timer = RepeatTimer(1, OrderCsv.test, args=(ordercsv,))
 timer.start()
 
 value = input("Please enter for stop:\n")
