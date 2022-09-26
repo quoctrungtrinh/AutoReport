@@ -31,46 +31,44 @@ class EtsyReportHandler:
         excelHandler.Create_Report("Kunden",rows)
 
 
-    def ReadFromEtsyOrderReport(self):
-        while (True):       
-            try:        
-                df = pandas.read_csv(self.fileOderPath)
-                df['Verkaufsdatum'] = df['Verkaufsdatum'].astype('datetime64[ns]')
+    def ReadFromEtsyOrderReport(self):      
+        try:        
+            df = pandas.read_csv(self.fileOderPath)
+            df['Verkaufsdatum'] = df['Verkaufsdatum'].astype('datetime64[ns]')
 
-                for index, row in df.iterrows():
-                    date = row['Verkaufsdatum']
-                    title = row['Titel']
-                    customer = row['Versandname']
-                    address = row['Lieferadresse 1']
-                    orderNr = row['Bestell-ID']
-                    transactionID = row['Transaktions-Nr.']
-                    plz = row['Versand-Postleitzahl']
-                    city = row['Stadt des Versands']
-                    country = row['Versandland']
-                    portal = 'Etsy'
+            for index, row in df.iterrows():
+                date = row['Verkaufsdatum']
+                title = row['Titel']
+                customer = row['Versandname']
+                address = row['Lieferadresse 1']
+                orderNr = row['Bestell-ID']
+                transactionID = row['Transaktions-Nr.']
+                plz = row['Versand-Postleitzahl']
+                city = row['Stadt des Versands']
+                country = row['Versandland']
+                portal = 'Etsy'
 
-                    if (orderNr,transactionID) not in self.ordersDict:    
-                        newKey = (orderNr,transactionID)
-                        order = Order()
-                        order.Date = date.date()
-                        order.Month = date.month
-                        order.Year = date.year
-                        order.Title = title
-                        order.OrderID = orderNr
-                        order.TransactionID = transactionID
-                        order.Kunden = customer
-                        order.Address = address
-                        order.Plz = plz
-                        order.City = city
-                        order.Country = country
-                        order.Portal = portal
-                        self.ordersDict[newKey] = order
-                print('Finished reading order csv!')
-                break                
-            except PermissionError:
-                time.sleep(1)
-                #self.ReadFromEtsyOrderReport()
-                #print(sys.exc_info()[0])
+                if (orderNr,transactionID) not in self.ordersDict:    
+                    newKey = (orderNr,transactionID)
+                    order = Order()
+                    order.Date = date.date()
+                    order.Month = date.month
+                    order.Year = date.year
+                    order.Title = title
+                    order.OrderID = orderNr
+                    order.TransactionID = transactionID
+                    order.Kunden = customer
+                    order.Address = address
+                    order.Plz = plz
+                    order.City = city
+                    order.Country = country
+                    order.Portal = portal
+                    self.ordersDict[newKey] = order
+            print('Finished reading order csv!')
+            return                
+        except PermissionError:
+            self.ReadFromEtsyOrderReport()
+            #print(sys.exc_info()[0])
         
         
 

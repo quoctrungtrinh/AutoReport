@@ -49,8 +49,8 @@ class Handler(FileSystemEventHandler):
             # Event is created, you can process it now
             filePath = pathlib.PureWindowsPath(rf'{event.src_path}').as_posix()
             etsyReportHandler = EtsyReportHandler(filePath)
-            result = etsyReportHandler.Proceed()
-            print(result)
+            etsyReportHandler.Proceed()
+            
             
 
               
