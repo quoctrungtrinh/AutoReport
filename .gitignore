@@ -4,3 +4,5 @@ ReportEtsy/Model/__pycache__/Constant.cpython-310.pyc
 ReportEtsy/Model/__pycache__/order.cpython-310.pyc
 ReportEtsy/Service/csv/__pycache__/etsyReportHandler.cpython-310.pyc
 
+DownloadPaymentWix/__pycache__/downloadOrderCsv.cpython-310.pyc
+DownloadPaymentWix/__pycache__/timerThread.cpython-310.pyc
