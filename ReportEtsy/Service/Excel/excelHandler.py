@@ -20,7 +20,9 @@ class ExcelHandler:
             if col == 'Date':
                 atts.append('Date')
             if col == 'Order ID':
-                atts.append('OrderID')                
+                atts.append('OrderID')
+            if col == 'Article ID':
+                atts.append('ArticleID')                
             if col == 'Transaction ID':
                 atts.append('TransactionID')
             if col == 'Title':

@@ -2,6 +2,7 @@ import inspect
 
 class Order():
     def __init__(self):
+        self.ArticleID = ""
         self.Year = ""
         self.Month = ""
         self.Date = ""

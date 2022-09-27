@@ -1,40 +1,7 @@
 
-COLUMNS = ['Year','Month','Date','Order ID','Transaction ID','Title','Customer','Address','PLZ','City','Country','Portal']
+COLUMNS = ['Year','Month','Date','Order ID','Transaction ID','Article ID','Title','Customer','Address','PLZ','City','Country','Portal']
 
 WATCH_PATH = r'C:\Users\z003cumd\Downloads'
 
-EXCEL_PATH = r'D:\Projects\Private\ReportEtsy\ReportEtsy\Service\csv\Example'
-
-#ONE DRIVE API
-
-ONEDRIVEAPI_APP_ID = 'f2eff643-6e67-461c-acd6-3475833ad692'
-ONEDRIVEAPI_APP_SCOPES = ['Files.ReadWrite']
-
-
-BAUERNHOF_SABE = '902042232'
-BAUERNHOF_HH = '1075450980'
-
-RAUPE_SABE = '1105749641'
-RAUPE_HH ='1165785482'
-
-CHRISTMASTREE_HH = '1110408313'
-
-JOB_HH = '1131382499'
-
-NICEDAY_HH = '1292482568'
-
-SEALIFE_HH = '1255075997'
-
-ICECREAM_HH ='1212293431'
-JUNGLE_HH = '1281114944'
-
-FINGERPUPPEN_SABE = '967680241'
-
-CHRISTMAS_HH = '915954055'
-
-FLIP_FLAP ='922876029'
-PICKABOOK = '927429489'
-PRINCESS = '974261303'
-
-MASK = '983701957'
+EXCEL_PATH = r'D:\EtsyTest'
 

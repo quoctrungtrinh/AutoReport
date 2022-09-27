@@ -4,9 +4,11 @@ from types import CoroutineType
 import pandas
 from Model.Constant import EXCEL_PATH
 from Model.order import Order
+from Model.book import Book
 from Service.Excel.excelHandler import ExcelHandler
 import sys
 import time
+
 
 class EtsyReportHandler:
     def __init__(self, fileOderPath):
@@ -37,6 +39,7 @@ class EtsyReportHandler:
             df['Verkaufsdatum'] = df['Verkaufsdatum'].astype('datetime64[ns]')
 
             for index, row in df.iterrows():
+                articleID = row['Artikel-ID']
                 date = row['Verkaufsdatum']
                 title = row['Titel']
                 customer = row['Versandname']
@@ -51,12 +54,15 @@ class EtsyReportHandler:
                 if (orderNr,transactionID) not in self.ordersDict:    
                     newKey = (orderNr,transactionID)
                     order = Order()
-                    order.Date = date.date()
+                    order.ArticleID = str(articleID)
+                    book = Book(str(articleID))
+                    book.GetInfo()            
+                    order.Date = date.strftime('%d.%m.%Y')
                     order.Month = date.month
                     order.Year = date.year
-                    order.Title = title
-                    order.OrderID = orderNr
-                    order.TransactionID = transactionID
+                    order.Title = book.GerShortName
+                    order.OrderID = str(orderNr)
+                    order.TransactionID = str(transactionID)
                     order.Kunden = customer
                     order.Address = address
                     order.Plz = plz
