@@ -2,9 +2,9 @@ import datetime
 from itertools import count
 from types import CoroutineType
 import pandas
-from Model.Constant import EXCEL_PATH
 from Model.order import Order
 from Model.book import Book
+from Model.Constant import EXCEL_WORKSHEET
 from Service.Excel.excelHandler import ExcelHandler
 import sys
 import time
@@ -12,7 +12,7 @@ import time
 
 class EtsyReportHandler:
     def __init__(self, fileOderPath):
-        self.ordersDict = {}
+        self.ordersList = []
         self.fileOderPath =  fileOderPath
         # self.fileStatementPath = fileStatementPath              
     
@@ -22,15 +22,13 @@ class EtsyReportHandler:
         
 
     def MakeReport(self):
-        excelHandler = ExcelHandler(EXCEL_PATH)
-        
-        orders = list(self.ordersDict.values())
+        excelHandler = ExcelHandler()
         rows = []
-        for order in orders:
+        for order in self.ordersList:
             row = order.ToRows(excelHandler.ColNamesToOrderAtts())
             rows.append(row)
         
-        excelHandler.Create_Report("Kunden",rows)
+        excelHandler.Create_Report(EXCEL_WORKSHEET,rows)
 
 
     def ReadFromEtsyOrderReport(self):      
@@ -49,27 +47,33 @@ class EtsyReportHandler:
                 plz = row['Versand-Postleitzahl']
                 city = row['Stadt des Versands']
                 country = row['Versandland']
+                fulfillmentStt = ""
+                isPersonalized = ""
+                figure = ""
                 portal = 'Etsy'
 
-                if (orderNr,transactionID) not in self.ordersDict:    
-                    newKey = (orderNr,transactionID)
-                    order = Order()
-                    order.ArticleID = str(articleID)
-                    book = Book(str(articleID))
-                    book.GetInfo()            
-                    order.Date = date.strftime('%d.%m.%Y')
-                    order.Month = date.month
-                    order.Year = date.year
-                    order.Title = book.GerShortName
-                    order.OrderID = str(orderNr)
-                    order.TransactionID = str(transactionID)
-                    order.Kunden = customer
-                    order.Address = address
-                    order.Plz = plz
-                    order.City = city
-                    order.Country = country
-                    order.Portal = portal
-                    self.ordersDict[newKey] = order
+                
+                newKey = (orderNr,transactionID)
+                order = Order()
+                order.ArticleID = str(articleID)
+                book = Book(str(articleID))
+                book.GetInfo()            
+                order.Date = date.strftime('%d.%m.%Y')
+                order.Month = date.month
+                order.Year = date.year
+                order.Title = book.GerShortName
+                order.OrderID = str(orderNr)
+                order.TransactionID = str(transactionID)
+                order.Kunden = customer
+                order.Address = address
+                order.Plz = plz
+                order.City = city
+                order.Country = country
+                order.isPersonalized = isPersonalized
+                order.Figure = figure
+                order.FulfillmentStt = fulfillmentStt
+                order.Portal = portal
+                self.ordersList.append(order)
             print('Finished reading order csv!')
             return                
         except PermissionError:

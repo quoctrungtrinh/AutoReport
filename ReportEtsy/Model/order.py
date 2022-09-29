@@ -19,6 +19,9 @@ class Order():
         self.City = ""
         self.Country = ""
         self.Portal  = ""
+        self.FulfillmentStt = ""
+        self.isPersonalized = ""
+        self.Figure = ""
 
     def ToRows(self,colNames):
         row = []

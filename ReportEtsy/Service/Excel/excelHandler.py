@@ -5,9 +5,10 @@ import os
 import shutil
 import datetime
 
+from Model.Constant import EXCEL_FILEPATH
+
 class ExcelHandler:
-    def __init__(self, folderPath):
-        self.FolderPath = folderPath
+    def __init__(self):                
         self.ColNames = COLUMNS
         
     def ColNamesToOrderAtts(self):
@@ -27,6 +28,12 @@ class ExcelHandler:
                 atts.append('TransactionID')
             if col == 'Title':
                 atts.append('Title')
+            if col == 'Personalized':
+                atts.append('isPersonalized')
+            if col == 'Figure':
+                atts.append('Figure')
+            if col == 'Fulfillment Status':
+                atts.append('FulfillmentStt')
             if col == 'Customer':
                 atts.append('Kunden')
             if col == 'Address':
@@ -38,26 +45,32 @@ class ExcelHandler:
             if col == 'Country':
                 atts.append('Country')
             if col == 'Portal':
-                atts.append('Portal')
+                atts.append('Portal')        
         return atts
 
     def Create_Report(self,wsTitle,rows):
-        date =  datetime.date.today().strftime('%d%m%Y')
         wb = Workbook()
         ws = wb.active
 
         ws.title = wsTitle
         ws.append(self.ColNames)
 
+        for row in rows:            
+            ws.append(row)
+        
+
+        wb.save(EXCEL_FILEPATH)
+
+    def Append_Report(self,wsTitle,rows):
+        wb = load_workbook(EXCEL_FILEPATH)
+        ws = wb[wsTitle]
+
         for row in rows:
             ws.append(row)
+        
 
-        filePath = os.path.join(self.FolderPath, f'Bericht{date}.xlsx')
+        wb.save(EXCEL_FILEPATH)
 
-        wb.save(filePath)
-
-    def Move_To_OneDrive(self,targetFolderPath):
-        dest = shutil.move(self.FolderPath,targetFolderPath)
 
 
 

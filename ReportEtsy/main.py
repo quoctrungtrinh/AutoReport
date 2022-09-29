@@ -2,6 +2,7 @@
 
 # import pyinotify
 from Model.Constant import WATCH_PATH
+from Service.Wix.wixOrderHandler import WixOrderHandler
 # from Service.newFileHandler import NewFileHandler
 from Service.Etsy.downloadOrderCsv import OrderCsv
 from Service.Etsy.downloadFinanceReport import FinanceReportCsv
@@ -45,11 +46,16 @@ class Handler(FileSystemEventHandler):
             return None
   
         elif event.event_type == 'created':
-            print(event)
-            # Event is created, you can process it now
             filePath = pathlib.PureWindowsPath(rf'{event.src_path}').as_posix()
-            etsyReportHandler = EtsyReportHandler(filePath)
-            etsyReportHandler.Proceed()
+            fileName = os.path.basename(filePath)
+            print(f"{fileName} was downloaded!")
+            # Event is created, you can process it now
+            if fileName.startswith("EtsySoldOrderItems2022") and filePath.endswith(".csv"):
+                etsyReportHandler = EtsyReportHandler(filePath)
+                etsyReportHandler.Proceed()
+                wixOrderHandler = WixOrderHandler()
+                wixOrderHandler.Proceed()
+                
             
             
 

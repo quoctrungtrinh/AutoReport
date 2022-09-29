@@ -8,16 +8,24 @@
 # # this will stop the timer
 # stopFlag.set()
 
-import time
-from downloadPaymentWix import WixCsv
-from timerThread import RepeatTimer
+import requests
+import json
 
-wixCsv = WixCsv()
+url = "http://hannas1stbooks.com/_functions/getOrders"
 
-timer = RepeatTimer(1, wixCsv.test, args=(wixCsv,))
-timer.start()
+payload = json.dumps({
+  "user": "quoctrungtrinh@live.com",
+  "password": "Zorro283!"
+})
+headers = {
+  'Content-Type': 'application/json'
+}
 
-value = input("Please enter for stop:\n")
+response = requests.request("POST", url, headers=headers, data=payload)
 
-if value == '':
-    timer.cancel()
+resjson = json.loads(response.text)
+print(resjson[0])
+#print(lengthresjson)
+# orders = response.text
+# print(orders)
+
