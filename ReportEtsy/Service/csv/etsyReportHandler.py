@@ -16,10 +16,13 @@ class EtsyReportHandler:
         self.fileOderPath =  fileOderPath
         # self.fileStatementPath = fileStatementPath              
     
-    def Proceed(self):        
+    def ProceedAndMake(self):        
         self.ReadFromEtsyOrderReport()
         self.MakeReport()
-        
+
+    def ProceedAndAppend(self):
+        self.ReadFromEtsyOrderReport()
+        self.AppendReport()        
 
     def MakeReport(self):
         excelHandler = ExcelHandler()
@@ -30,13 +33,22 @@ class EtsyReportHandler:
         
         excelHandler.Create_Report(EXCEL_WORKSHEET,rows)
 
+    def AppendReport(self):
+        excelHandler = ExcelHandler()
+        rows = []
+        for order in self.ordersList:
+            row = order.ToRows(excelHandler.ColNamesToOrderAtts())
+            rows.append(row)
+        
+        excelHandler.Append_Report(EXCEL_WORKSHEET,rows)
+        print("Update report finished!")
 
     def ReadFromEtsyOrderReport(self):      
         try:        
             df = pandas.read_csv(self.fileOderPath)
             df['Verkaufsdatum'] = df['Verkaufsdatum'].astype('datetime64[ns]')
 
-            for index, row in df.iterrows():
+            for index, row in df.iterrows():                
                 articleID = row['Artikel-ID']
                 date = row['Verkaufsdatum']
                 title = row['Titel']
@@ -58,10 +70,11 @@ class EtsyReportHandler:
                 order.ArticleID = str(articleID)
                 book = Book(str(articleID))
                 book.GetInfo()            
-                order.Date = date.strftime('%d.%m.%Y')
+                order.Date = str(date.strftime('%d.%m.%Y'))
                 order.Month = date.month
                 order.Year = date.year
                 order.Title = book.GerShortName
+                order.Vendor = book.Verdor
                 order.OrderID = str(orderNr)
                 order.TransactionID = str(transactionID)
                 order.Kunden = customer

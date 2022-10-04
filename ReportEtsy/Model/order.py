@@ -9,6 +9,7 @@ class Order():
         self.OrderID = ""
         self.TransactionID = ""
         self.Title = ""
+        self.Vendor = ""
         self.Payment = ""
         self.TransactionFee = ""
         self.ProcessingFee = ""

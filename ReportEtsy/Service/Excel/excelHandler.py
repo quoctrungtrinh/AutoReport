@@ -28,6 +28,8 @@ class ExcelHandler:
                 atts.append('TransactionID')
             if col == 'Title':
                 atts.append('Title')
+            if col == 'Vendor':
+                atts.append('Vendor')
             if col == 'Personalized':
                 atts.append('isPersonalized')
             if col == 'Figure':

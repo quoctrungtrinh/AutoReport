@@ -56,14 +56,29 @@ class Handler(FileSystemEventHandler):
                 wixOrderHandler = WixOrderHandler()
                 wixOrderHandler.Proceed()
                 
-            
+class Reporter():
+    def make(self):
+        filePath2020 = r'D:\Projects\Private\AutoReport\AutoReport\ReportEtsy\Csv\EtsySoldOrderItems2020.csv'
+        filePath2021 = r'D:\Projects\Private\AutoReport\AutoReport\ReportEtsy\Csv\EtsySoldOrderItems2021.csv'
+        filePath2022 = r'D:\Projects\Private\AutoReport\AutoReport\ReportEtsy\Csv\EtsySoldOrderItems2022.csv'
+
+        etsyReportHandler = EtsyReportHandler(filePath2020)
+        etsyReportHandler.ProceedAndMake()
+        etsyReportHandler = EtsyReportHandler(filePath2021)
+        etsyReportHandler.ProceedAndAppend()
+        etsyReportHandler = EtsyReportHandler(filePath2022)
+        etsyReportHandler.ProceedAndAppend()
+        wixOrderHandler = WixOrderHandler()
+        wixOrderHandler.Proceed()
             
 
               
   
 if __name__ == '__main__':
-    watch = OnMyWatch()
-    watch.run()
+    # watch = OnMyWatch()
+    # watch.run()
+    reporter = Reporter()
+    reporter.make()
 
 
 

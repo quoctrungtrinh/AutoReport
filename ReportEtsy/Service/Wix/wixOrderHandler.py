@@ -49,6 +49,7 @@ class WixOrderHandler:
 
                 for item in lineItems:
                     articleID = item['productId']
+                    quantity = int(item['quantity'])
                     if len(item['options']) > 0:
                         isPersonalized =  'Yes' if item['options'][0]['selection'] == 'Mit Personalisierung' else 'No'
                     if len(item['options']) > 1:
@@ -59,10 +60,11 @@ class WixOrderHandler:
                     order.ArticleID = str(articleID)
                     book = Book(str(articleID))
                     book.GetInfo()            
-                    order.Date = date.strftime('%d.%m.%Y')
+                    order.Date = str(date.strftime('%d.%m.%Y'))
                     order.Month = date.month
                     order.Year = date.year
                     order.Title = book.GerShortName
+                    order.Vendor = book.Verdor
                     order.FulfillmentStt = fulfillmentStt
                     order.isPersonalized = isPersonalized
                     order.Figure = figure
@@ -74,7 +76,10 @@ class WixOrderHandler:
                     order.City = city
                     order.Country = country
                     order.Portal = portal
-                    self.ordersList.append(order)
+                    
+                    for n in range(quantity):
+                        self.ordersList.append(order)
+                    
 
         print('Finished getting orders from wix!')
     
