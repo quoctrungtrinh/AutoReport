@@ -62,6 +62,7 @@ class EtsyReportHandler:
                 fulfillmentStt = ""
                 isPersonalized = ""
                 figure = ""
+                quantity = int(row['Stückzahl'])
                 portal = 'Etsy'
 
                 
@@ -86,7 +87,8 @@ class EtsyReportHandler:
                 order.Figure = figure
                 order.FulfillmentStt = fulfillmentStt
                 order.Portal = portal
-                self.ordersList.append(order)
+                for i in range(quantity):
+                    self.ordersList.append(order)
             print('Finished reading order csv!')
             return                
         except PermissionError:
