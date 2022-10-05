@@ -1,14 +1,13 @@
-#from Service.newFileHandler import NewFileHandler
-
-# import pyinotify
 from Model.Constant import WATCH_PATH
 from Service.Wix.wixOrderHandler import WixOrderHandler
-# from Service.newFileHandler import NewFileHandler
+
 from Service.Etsy.downloadOrderCsv import OrderCsv
 from Service.Etsy.downloadFinanceReport import FinanceReportCsv
 from Service.csv.etsyStatementHandler import EtsyStatementHandler
 from Service.csv.etsyReportHandler import EtsyReportHandler
 
+from flask import Flask
+from flask_restful import Api
 
 import time
 from watchdog.observers import Observer
@@ -72,13 +71,20 @@ class Reporter():
         wixOrderHandler.Proceed()
             
 
-              
-  
+server = Flask(__name__)   
+api = Api(server)           
+
+@server.route('/')
+def hello():
+    return 'Hello, World!'
+
 if __name__ == '__main__':
     # watch = OnMyWatch()
     # watch.run()
-    reporter = Reporter()
-    reporter.make()
+    #reporter = Reporter()
+    #reporter.make()
+    server.run(host='0.0.0.0', port=6000)
+
 
 
 
