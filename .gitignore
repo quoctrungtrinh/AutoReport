@@ -22,3 +22,5 @@ ReportEtsy/Csv/EtsySoldOrderItems2022.csv
 ReportEtsy/Service/csv/__pycache__/etsyReportHandler.cpython-310.pyc
 ReportEtsy/Service/Excel/__pycache__/excelHandler.cpython-310.pyc
 ReportEtsy/Service/__pycache__/newFileHandler.cpython-310.pyc
+ReportEtsy/Service/csv/__pycache__/etsyReportHandler.cpython-310.pyc
+ReportEtsy/Service/csv/__pycache__/

@@ -23,6 +23,7 @@ class Order():
         self.FulfillmentStt = ""
         self.isPersonalized = ""
         self.Figure = ""
+        self.Sale = ""
 
     def ToRows(self,colNames):
         row = []

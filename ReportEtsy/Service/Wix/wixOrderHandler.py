@@ -44,10 +44,11 @@ class WixOrderHandler:
                 country = wixOrder['shippingInfo']['shipmentDetails']['address']['country']
                 fulfillmentStt = wixOrder['fulfillmentStatus']
                 figure = ' '
-                isPersonalized = ' '
+                isPersonalized = ' '                
                 portal = 'Wix'
 
                 for item in lineItems:
+                    sale = item['totalPrice']
                     articleID = item['productId']
                     quantity = int(item['quantity'])
                     if len(item['options']) > 0:
@@ -75,6 +76,7 @@ class WixOrderHandler:
                     order.Plz = plz
                     order.City = city
                     order.Country = country
+                    order.Sale = sale
                     order.Portal = portal
                     
                     for n in range(quantity):

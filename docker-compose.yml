@@ -1,23 +1,23 @@
 version: '3.7'
 
 services:
-  # dat_ui:
-  #  container_name: dat_ui
-  #  image: dat-ui:v1
-  #  ports:
-  #   - '8501:8501'
-  #  environment:
-  #    - BACKEND_IP=dat_backend
-  #    - BACKEND_PORT=6000
-  #  depends_on:
-  #    - dat_backend
-  #  restart: always
+  autorp_ui:
+   container_name: autorp_ui
+   image: autorp-ui:v1
+   ports:
+    - '8501:8501'
+   environment:
+     - BACKEND_IP=autorp_backend
+     - BACKEND_PORT=8080
+   depends_on:
+     - autorp_backend
+   restart: always
 
   autorp_backend:
     container_name: autorp_backend
     image: autorp-backend:v1
     ports:
-      - '6000:6000'
+      - '8080:8080'
     # environment:
     #   - REDIS_IP=redis
     #   - REDIS_PORT=6379

@@ -30,6 +30,8 @@ class ExcelHandler:
                 atts.append('Title')
             if col == 'Vendor':
                 atts.append('Vendor')
+            if col == "Sale":
+                atts.append('Sale')
             if col == 'Personalized':
                 atts.append('isPersonalized')
             if col == 'Figure':

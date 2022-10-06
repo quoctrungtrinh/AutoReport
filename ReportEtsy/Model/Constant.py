@@ -1,7 +1,7 @@
 import datetime
 import os
 
-COLUMNS = ['Year','Month','Date','Order ID','Transaction ID','Article ID','Title','Vendor','Personalized','Figure','Fulfillment Status','Customer','Address','PLZ','City','Country','Portal']
+COLUMNS = ['Year','Month','Date','Order ID','Transaction ID','Article ID','Title','Sale','Vendor','Personalized','Figure','Fulfillment Status','Customer','Address','PLZ','City','Country','Portal']
 
 WATCH_PATH = r'C:\Users\z003cumd\Downloads'
 

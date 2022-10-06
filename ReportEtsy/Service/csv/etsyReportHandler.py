@@ -64,6 +64,7 @@ class EtsyReportHandler:
                 figure = ""
                 quantity = int(row['Stückzahl'])
                 portal = 'Etsy'
+                sale = row['Gesamtanzahl Artikel']
 
                 
                 newKey = (orderNr,transactionID)
@@ -83,6 +84,7 @@ class EtsyReportHandler:
                 order.Plz = plz
                 order.City = city
                 order.Country = country
+                order.Sale = sale
                 order.isPersonalized = isPersonalized
                 order.Figure = figure
                 order.FulfillmentStt = fulfillmentStt
