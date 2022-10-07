@@ -8,6 +8,6 @@ WATCH_PATH = r'C:\Users\z003cumd\Downloads'
 
 
 date =  datetime.date.today().strftime('%d%m%Y')
-EXCEL_FOLDERPATH = r'D:\EtsyTest'
+EXCEL_FOLDERPATH = r'/Excel/'
 EXCEL_FILEPATH = os.path.join(EXCEL_FOLDERPATH, f'Bericht_Stammdaten.xlsx')
 EXCEL_WORKSHEET = "Kunden"

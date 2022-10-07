@@ -1,6 +1,7 @@
 from flask_restful import Resource
-from flask import Response
+from flask import Response,send_file
 
 class AllOrdersController(Resource):
     def get(self):
-        return Response((f"Orders"), status=200)
+        path = "/Excel/Bericht_Stammdaten.xlsx"
+        return send_file(path, as_attachment=True)
