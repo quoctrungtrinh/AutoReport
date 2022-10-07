@@ -82,6 +82,7 @@ if __name__ == '__main__':
     # watch.run()
     #reporter = Reporter()
     #reporter.make()
+    #192.168.178.96
     server.run(host='0.0.0.0', port='8080')
 
 
