@@ -76,7 +76,7 @@ class EtsyReportHandler:
                 order.Month = date.month
                 order.Year = date.year
                 order.Title = book.GerShortName
-                order.Vendor = book.Verdor
+                order.Vendor = book.Vendor
                 order.OrderID = str(orderNr)
                 order.TransactionID = str(transactionID)
                 order.Kunden = customer

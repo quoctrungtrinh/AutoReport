@@ -65,7 +65,7 @@ class WixOrderHandler:
                     order.Month = date.month
                     order.Year = date.year
                     order.Title = book.GerShortName
-                    order.Vendor = book.Verdor
+                    order.Vendor = book.Vendor
                     order.FulfillmentStt = fulfillmentStt
                     order.isPersonalized = isPersonalized
                     order.Figure = figure
