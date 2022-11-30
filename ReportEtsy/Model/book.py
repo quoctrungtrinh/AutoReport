@@ -28,12 +28,20 @@ class Book:
         
         elif self.ArticleID == "1315756445" or self.ArticleID == "e32d3e0d-735e-7b2e-4ed6-b29311a53508":
             self.GerName = "Quiet Book Prinzessin Schminkset für Kinder - personalisierte Geschenke Kinder/Montessori Spielzeug für Kleinkinder"
-            self.GerShortName = "Prinzessin"
+            self.GerShortName = "Prinzessin Schminkset"
             self.EngName = ""
             self.EngShortName = ""
             self.Price = ""
             self.Vendor = "HH"
-
+        
+        elif self.ArticleID == "1337277410" or self.ArticleID == "838312c1-e583-e2f8-f745-13728fbeb035":
+            self.GerName = "Mini Quiet Book Löwe"
+            self.GerShortName = "Mini Quiet Book Lion"
+            self.EngName = ""
+            self.EngShortName = ""
+            self.Price = ""
+            self.Vendor = "HH"
+            
         elif self.ArticleID == "1315767169" or self.ArticleID == "16a782cc-123d-7c10-c654-8b8d664ad2af":
             self.GerName = "Quiet Book Drei kleinen Schweinchen mit Fingerpuppen - personalisierte Geschenke Kinder/3 Seiten großes ruhiges Buch/ Montessori Spielzeug"
             self.GerShortName = "Drei kleinen Schweinchen"

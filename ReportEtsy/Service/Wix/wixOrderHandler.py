@@ -55,8 +55,7 @@ class WixOrderHandler:
                         isPersonalized =  'Yes' if item['options'][0]['selection'] == 'Mit Personalisierung' else 'No'
                     if len(item['options']) > 1:
                         figure = item['options'][1]['selection']
-                    
-                    newKey = (orderNr,articleID)
+                                       
                     order = Order()
                     order.ArticleID = str(articleID)
                     book = Book(str(articleID))
@@ -65,6 +64,7 @@ class WixOrderHandler:
                     order.Month = date.month
                     order.Year = date.year
                     order.Title = book.GerShortName
+                    order.Key = order.Year + order.Month + order.Title
                     order.Vendor = book.Vendor
                     order.FulfillmentStt = fulfillmentStt
                     order.isPersonalized = isPersonalized

@@ -65,9 +65,9 @@ class EtsyReportHandler:
                 quantity = int(row['Stückzahl'])
                 portal = 'Etsy'
                 sale = row['Gesamtanzahl Artikel']
+                
 
                 
-                newKey = (orderNr,transactionID)
                 order = Order()
                 order.ArticleID = str(articleID)
                 book = Book(str(articleID))
@@ -76,6 +76,7 @@ class EtsyReportHandler:
                 order.Month = date.month
                 order.Year = date.year
                 order.Title = book.GerShortName
+                order.Key = order.Year + order.Month + order.Title
                 order.Vendor = book.Vendor
                 order.OrderID = str(orderNr)
                 order.TransactionID = str(transactionID)

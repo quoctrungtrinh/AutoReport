@@ -34,7 +34,7 @@ class AllOrders:
 
     def UploadFile(self):
         updateEtsyOrderFileUrl = f'{self.rootUrl}/allorders/etsyorders/file'
-        uploaded_file = st.file_uploader("Upload a terraform file",type = ['csv'],)
+        uploaded_file = st.file_uploader("Upload a etsy order csv file",type = ['csv'],)
         #tfName = st.text_input('Deployment name')  
         if uploaded_file is not None:
             fileName = uploaded_file.name

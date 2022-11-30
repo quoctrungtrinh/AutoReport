@@ -14,6 +14,8 @@ class ExcelHandler:
     def ColNamesToOrderAtts(self):
         atts = []
         for col in self.ColNames:
+            if col == 'Key':
+                atts.append('Key')
             if col == 'Year':
                 atts.append('Year')
             if col == 'Month':
